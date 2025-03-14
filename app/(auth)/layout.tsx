@@ -6,7 +6,10 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex min-h-screen">
       <section className="bg-brand p-10 hidden w-1/2 items-center justify-center lg:flex xl:w-2/5">
         <div className="flex max-h-[800px] max-w-[430px] flex-col justify-center space-y-12">
-          <Image src="/favicon.ico" alt="logo" width={82} height={82} className="h-auto" />
+          <div className="text-white flex items-center gap-2">
+            <Image src="/favicon.ico" alt="logo" width={82} height={82} className="h-auto" />
+            <h1 className="h1">CloudSRM</h1>
+          </div>
           <div className="space-y-5 text-white">
             <h1 className="h1">Manage your files the best way!</h1>
             <p className="body-1">This is a place where you can store all your documents</p>
