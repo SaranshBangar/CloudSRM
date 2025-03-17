@@ -9,14 +9,24 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { verifySecret, sendEmailOTP } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 
-const OTPModal = ({ accountId, email }: { accountId: string; email: string }) => {
+const OTPModal = ({
+  accountId,
+  email,
+}: {
+  accountId: string;
+  email: string;
+}) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(true);
@@ -46,7 +56,9 @@ const OTPModal = ({ accountId, email }: { accountId: string; email: string }) =>
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader className="relative flex justify-center">
-          <AlertDialogTitle className="h2 text-center">Enter your OTP</AlertDialogTitle>
+          <AlertDialogTitle className="h2 text-center">
+            Enter your OTP
+          </AlertDialogTitle>
           <Image
             src="/assets/icons/close-dark.svg"
             alt="close"
@@ -75,13 +87,30 @@ const OTPModal = ({ accountId, email }: { accountId: string; email: string }) =>
 
         <AlertDialogFooter>
           <div className="flex w-full flex-col gap-4">
-            <AlertDialogAction onClick={handleSubmit} className="shad-submit-btn h-12" type="button">
+            <AlertDialogAction
+              onClick={handleSubmit}
+              className="shad-submit-btn h-12"
+              type="button"
+            >
               Submit
-              {isLoading && <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className="ml-2 animate-spin" />}
+              {isLoading && (
+                <Image
+                  src="/assets/icons/loader.svg"
+                  alt="loader"
+                  width={24}
+                  height={24}
+                  className="ml-2 animate-spin"
+                />
+              )}
             </AlertDialogAction>
             <div className="subtitle-2 text-center text-light-100 mt-2">
               Didn&apos;t get a code?
-              <Button type="button" variant="link" className="pl-1 text-brand" onClick={handleResendOtp}>
+              <Button
+                type="button"
+                variant="link"
+                className="pl-1 text-brand"
+                onClick={handleResendOtp}
+              >
                 Click to resend
               </Button>
             </div>
