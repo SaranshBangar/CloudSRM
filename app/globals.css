@@ -60,6 +60,7 @@
 }
 
 @layer utilities {
+  /* ===== TYPOGRAPHY */
   .h1 {
     @apply text-[34px] leading-[42px] font-bold;
   }
@@ -97,16 +98,18 @@
     @apply text-[10px] leading-[14px] font-normal;
   }
 
+  /* ===== HELPER CLASSES */
   .container {
     @apply mx-auto max-w-7xl px-5;
   }
   .primary-btn {
-    @apply bg-brand hover:bg-brand-100 text-white transition-all rounded-full button !important;
+    @apply bg-brand hover:bg-brand-100 transition-all rounded-full button !important;
   }
   .flex-center {
     @apply flex items-center justify-center;
   }
 
+  /* =====  SHADCN OVERRIDES */
   .shad-no-focus {
     @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
@@ -127,7 +130,7 @@
     @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl md:rounded-[30px] px-4 md:px-8 py-10 bg-white outline-none !important;
   }
   .shad-submit-btn {
-    @apply bg-brand button hover:bg-brand-100 text-white transition-all rounded-full !important;
+    @apply bg-brand button hover:bg-brand-100 transition-all rounded-full !important;
   }
   .shad-otp {
     @apply w-full flex gap-1 sm:gap-2 justify-between !important;
@@ -147,7 +150,7 @@
     @apply cursor-pointer !important;
   }
   .shad-dialog {
-    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8 !important;
+    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8   !important;
   }
   .shad-chart-title {
     @apply text-white !important;
@@ -156,6 +159,7 @@
     @apply cursor-pointer !important;
   }
 
+  /* Sidebar & MobileNavigation */
   .nav-icon {
     @apply w-6 filter invert opacity-25 !important;
   }
@@ -163,10 +167,14 @@
     @apply invert-0 opacity-100 !important;
   }
 
+  /* =====  STYLE CLASSES */
+
+  /* Root Layout */
   .main-content {
     @apply remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-5 py-7 sm:mr-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
   }
 
+  /* Dashboard */
   .dashboard-container {
     @apply mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:gap-10 !important;
   }
@@ -201,6 +209,7 @@
     @apply body-1 mt-10 text-center text-light-200 !important;
   }
 
+  /* Type page */
   .page-container {
     @apply mx-auto flex w-full max-w-7xl flex-col items-center gap-8 !important;
   }
@@ -214,6 +223,7 @@
     @apply mt-5 flex items-center sm:mt-0 sm:gap-3 !important;
   }
 
+  /* ActionsDropdown */
   .rename-input-field {
     @apply body-2 shad-no-focus h-[52px] w-full rounded-full border px-4 shadow-drop-1 !important;
   }
@@ -230,6 +240,7 @@
     @apply primary-btn !mx-0 h-[52px] w-full flex-1 !important;
   }
 
+  /* ActionsModalContent */
   .file-details-thumbnail {
     @apply !mb-1 flex items-center gap-3 rounded-xl border border-light-200/40 bg-light-400/50 p-3 !important;
   }
@@ -253,6 +264,7 @@
     @apply aspect-square rounded-full !important;
   }
 
+  /* AuthForm */
   .auth-form {
     @apply flex max-h-[800px] w-full max-w-[580px] flex-col justify-center space-y-6 transition-all lg:h-full lg:space-y-8 !important;
   }
@@ -266,6 +278,7 @@
     @apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
   }
 
+  /* Card */
   .file-card {
     @apply flex cursor-pointer flex-col gap-6 rounded-[18px] bg-white p-5 shadow-sm transition-all hover:shadow-drop-3 !important;
   }
@@ -273,6 +286,7 @@
     @apply flex flex-col gap-2 text-light-100 !important;
   }
 
+  /* Chart */
   .chart {
     @apply flex items-center rounded-[20px] bg-brand p-2 text-white md:flex-col xl:flex-row !important;
   }
@@ -295,6 +309,7 @@
     @apply subtitle-1 mt-2 w-full text-white/70 md:text-center lg:text-left !important;
   }
 
+  /* FileUploader */
   .uploader-button {
     @apply primary-btn h-[52px] gap-2 px-10 shadow-drop-1 !important;
   }
@@ -312,6 +327,7 @@
     @apply bg-red !rounded-[10px] !important;
   }
 
+  /* Header */
   .header {
     @apply hidden items-center justify-between gap-5 p-5 sm:flex lg:py-7 xl:gap-10 !important;
   }
@@ -322,6 +338,7 @@
     @apply flex-center h-[52px] min-w-[54px] items-center rounded-full bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
   }
 
+  /* Mobile Navigation */
   .mobile-header {
     @apply flex h-[60px] justify-between px-5 sm:hidden !important;
   }
@@ -344,10 +361,12 @@
     @apply h5 flex h-[52px] w-full items-center gap-4 rounded-full bg-brand/10 px-6 text-brand shadow-none transition-all hover:bg-brand/20 !important;
   }
 
+  /* OTP Modal */
   .otp-close-button {
     @apply absolute -right-1 -top-7 cursor-pointer sm:-right-2 sm:-top-4  !important;
   }
 
+  /* Search */
   .search {
     @apply relative w-full md:max-w-[480px] !important;
   }
@@ -364,6 +383,7 @@
     @apply body-2 text-center text-light-100 !important;
   }
 
+  /* Sidebar */
   .sidebar {
     @apply remove-scrollbar hidden h-screen w-[90px] flex-col overflow-auto px-5 py-7 sm:flex lg:w-[280px] xl:w-[325px] !important;
   }
@@ -384,6 +404,7 @@
     @apply bg-brand text-white shadow-drop-2 !important;
   }
 
+  /* Sort */
   .sort-select {
     @apply shad-no-focus h-11 w-full rounded-[8px] border-transparent bg-white !shadow-sm sm:w-[210px] !important;
   }
@@ -391,6 +412,7 @@
     @apply !shadow-drop-3 !important;
   }
 
+  /* Thumbnail */
   .thumbnail {
     @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-brand/10;
   }
