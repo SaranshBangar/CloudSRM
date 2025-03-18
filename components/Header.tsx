@@ -18,7 +18,13 @@ const Header = () => {
           }}
         >
           <Button type="submit" className="sign-out-button">
-            <Image src="/assets/icons/logout.svg" alt="L=logout" width={24} height={24} className="w-6" />
+            <Image
+              src="/assets/icons/logout.svg"
+              alt="L=logout"
+              width={24}
+              height={24}
+              className="w-6"
+            />
           </Button>
         </form>
       </div>

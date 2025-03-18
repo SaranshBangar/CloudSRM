@@ -6,7 +6,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "./ui/input";
 
 import Image from "next/image";
@@ -53,7 +60,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
       }
     } catch (error) {
       console.error("Auth error details:", error);
-      setErrorMessage(type === "sign-up" ? "Failed to create account" : "Failed to sign in");
+      setErrorMessage(
+        type === "sign-up" ? "Failed to create account" : "Failed to sign in",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -72,21 +81,42 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 <div className="shad-form-item">
                   <FormLabel className="shad-form-label">Net ID</FormLabel>
                   <FormControl>
-                    <Input placeholder="Eg - sb5116" {...field} className="shad-input" />
+                    <Input
+                      placeholder="Eg - sb5116"
+                      {...field}
+                      className="shad-input"
+                    />
                   </FormControl>
                 </div>
                 <FormMessage className="shad-form-message" />
               </FormItem>
             )}
           />
-          <Button type="submit" className="form-submit-button" disabled={isLoading}>
+          <Button
+            type="submit"
+            className="form-submit-button"
+            disabled={isLoading}
+          >
             {type === "sign-in" ? "Sign In" : "Sign Up"}
-            {isLoading && <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className="ml-2 animate-spin" />}
+            {isLoading && (
+              <Image
+                src="/assets/icons/loader.svg"
+                alt="loader"
+                width={24}
+                height={24}
+                className="ml-2 animate-spin"
+              />
+            )}
           </Button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
       </Form>
-      {accountId && <OTPModal email={form.getValues("netid") + "@srmist.edu.in"} accountId={accountId} />}
+      {accountId && (
+        <OTPModal
+          email={form.getValues("netid") + "@srmist.edu.in"}
+          accountId={accountId}
+        />
+      )}
     </>
   );
 };

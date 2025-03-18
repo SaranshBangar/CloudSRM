@@ -15,7 +15,11 @@ const handleError = (error: unknown, message: string) => {
 const getUserByNetId = async (netid: string) => {
   const { databases } = await createAdminClient();
 
-  const result = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, [Query.equal("netid", [netid])]);
+  const result = await databases.listDocuments(
+    appwriteConfig.databaseId,
+    appwriteConfig.usersCollectionId,
+    [Query.equal("netid", [netid])],
+  );
 
   return result.total > 0 ? result.documents[0] : null;
 };
@@ -48,17 +52,28 @@ export const createAccount = async ({ netid }: { netid: string }) => {
     const username = netid.split("@")[0];
     const avatarUrl = (await getAvatarUrl(username)).toString();
 
-    await databases.createDocument(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, ID.unique(), {
-      netid,
-      avatar: avatarUrl,
-      accountId,
-    });
+    await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+      ID.unique(),
+      {
+        netid,
+        avatar: avatarUrl,
+        accountId,
+      },
+    );
   }
 
   return parseStringify({ accountId });
 };
 
-export const verifySecret = async ({ accountId, password }: { accountId: string; password: string }) => {
+export const verifySecret = async ({
+  accountId,
+  password,
+}: {
+  accountId: string;
+  password: string;
+}) => {
   try {
     const { account } = await createAdminClient();
 
@@ -82,7 +97,11 @@ export const getCurrentUser = async () => {
 
   const result = await account.get();
 
-  const user = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, [Query.equal("accountId", result.$id)]);
+  const user = await databases.listDocuments(
+    appwriteConfig.databaseId,
+    appwriteConfig.usersCollectionId,
+    [Query.equal("accountId", result.$id)],
+  );
 
   if (user.total <= 0) return null;
 
