@@ -8,14 +8,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Sidebar = ({ fullName, email }: { fullName: string; email: string }) => {
+const Sidebar = ({ netid }: { netid: string }) => {
   const pathname = usePathname();
   const [avatarUrl, setAvatarUrl] = useState("/assets/images/default-avatar.png");
 
   useEffect(() => {
     const fetchAvatarUrl = async () => {
       try {
-        const url = await getAvatarUrl(email);
+        const username = netid.split("@")[0];
+        const url = await getAvatarUrl(username);
         setAvatarUrl(url);
       } catch (error) {
         console.error("Error fetching avatar URL:", error);
@@ -23,7 +24,7 @@ const Sidebar = ({ fullName, email }: { fullName: string; email: string }) => {
     };
 
     fetchAvatarUrl();
-  }, [email]);
+  }, [netid]);
 
   return (
     <aside className="sidebar">
@@ -50,8 +51,7 @@ const Sidebar = ({ fullName, email }: { fullName: string; email: string }) => {
       <div className="sidebar-user-info">
         <Image src={avatarUrl} alt="avatar" width={44} height={44} className="sidebar-user-avatar" />
         <div className="hidden lg:block">
-          <p className="subtitle-2 capitalize">{fullName}</p>
-          <p className="caption">{email}</p>
+          <p className="subtitle-2">{netid}</p>
         </div>
       </div>
     </aside>

@@ -5,16 +5,17 @@ import { createAdminClient, createSessionClient } from "../appwrite";
 import { appwriteConfig } from "../appwrite/config";
 import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
   throw error;
 };
 
-const getUserByEmail = async (email: string) => {
+const getUserByNetId = async (netid: string) => {
   const { databases } = await createAdminClient();
 
-  const result = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, [Query.equal("email", [email])]);
+  const result = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, [Query.equal("netid", [netid])]);
 
   return result.total > 0 ? result.documents[0] : null;
 };
@@ -23,32 +24,32 @@ export const getAvatarUrl = async (name: string) => {
   return `${appwriteConfig.endpointUrl}/avatars/initials?name=${encodeURIComponent(name)}`;
 };
 
-export const sendEmailOTP = async (email: string) => {
+export const sendEmailOTP = async (netid: string) => {
   const { account } = await createAdminClient();
 
   try {
-    const session = await account.createEmailToken(ID.unique(), email);
+    const session = await account.createEmailToken(ID.unique(), netid);
     return session.userId;
   } catch (error) {
     handleError(error, "Error sending email OTP");
   }
 };
 
-export const createAccount = async ({ fullName, email }: { fullName: string; email: string }) => {
-  const exsistingUser = await getUserByEmail(email);
+export const createAccount = async ({ netid }: { netid: string }) => {
+  const exsistingUser = await getUserByNetId(netid);
 
-  const accountId = await sendEmailOTP(email);
+  const accountId = await sendEmailOTP(netid);
 
   if (!accountId) throw new Error("Error sending email OTP");
 
   if (!exsistingUser) {
     const { databases } = await createAdminClient();
 
-    const avatarUrl = getAvatarUrl(fullName);
+    const username = netid.split("@")[0];
+    const avatarUrl = (await getAvatarUrl(username)).toString();
 
     await databases.createDocument(appwriteConfig.databaseId, appwriteConfig.usersCollectionId, ID.unique(), {
-      fullName,
-      email,
+      netid,
       avatar: avatarUrl,
       accountId,
     });
@@ -86,4 +87,17 @@ export const getCurrentUser = async () => {
   if (user.total <= 0) return null;
 
   return parseStringify(user.documents[0]);
+};
+
+export const signOutUser = async () => {
+  const { account } = await createSessionClient();
+
+  try {
+    account.deleteSession("current");
+    (await cookies()).delete("appwrite-session");
+  } catch (error) {
+    handleError(error, "Error signing out user");
+  } finally {
+    redirect("/auth");
+  }
 };

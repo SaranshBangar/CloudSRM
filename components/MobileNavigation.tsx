@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { getAvatarUrl } from "@/lib/actions/user.actions";
+import { getAvatarUrl, signOutUser } from "@/lib/actions/user.actions";
 import { Separator } from "./ui/separator";
 import { sidebarNavItems } from "@/constants";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import FileUploader from "./FileUploader";
 import { Button } from "./ui/button";
 
-const MobileNavigation = ({ ownerId, accountId, fullName, email }: { ownerId: string; accountId: string; fullName: string; email: string }) => {
+const MobileNavigation = ({ ownerId, accountId, netid }: { ownerId: string; accountId: string; netid: string }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -22,7 +22,8 @@ const MobileNavigation = ({ ownerId, accountId, fullName, email }: { ownerId: st
   useEffect(() => {
     const fetchAvatarUrl = async () => {
       try {
-        const url = await getAvatarUrl(email);
+        const username = netid.split("@")[0];
+        const url = await getAvatarUrl(username);
         setAvatarUrl(url);
       } catch (error) {
         console.error("Error fetching avatar URL:", error);
@@ -30,7 +31,7 @@ const MobileNavigation = ({ ownerId, accountId, fullName, email }: { ownerId: st
     };
 
     fetchAvatarUrl();
-  }, [email]);
+  }, [netid]);
 
   return (
     <header className="mobile-header">
@@ -44,8 +45,7 @@ const MobileNavigation = ({ ownerId, accountId, fullName, email }: { ownerId: st
             <div className="header-user">
               <Image src={avatarUrl} alt="avatar" width={44} height={44} className="header-user-avatar" />
               <div className="sm:hidden lg:block">
-                <p className="subtitle-2 capitalize">{fullName}</p>
-                <p className="caption">{email}</p>
+                <p className="subtitle-2">{netid}</p>
               </div>
             </div>
             <Separator className="mb-4 bg-light-200/20" />
@@ -65,7 +65,7 @@ const MobileNavigation = ({ ownerId, accountId, fullName, email }: { ownerId: st
           <Separator className="my-5 bg-light-200/20" />
           <div className="flex flex-col justify-between gap-5 pb-5">
             <FileUploader />
-            <Button type="submit" className="mobile-sign-out-button" onClick={() => {}}>
+            <Button type="submit" className="mobile-sign-out-button" onClick={async () => await signOutUser()}>
               <Image src="/assets/icons/logout.svg" alt="L=logout" width={24} height={24} />
               <p>Logout</p>
             </Button>

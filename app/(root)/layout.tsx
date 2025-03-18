@@ -8,7 +8,7 @@ import React from "react";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser) return redirect("/sign-in");
+  if (!currentUser) return redirect("/auth");
 
   return (
     <main className="flex h-screen">
