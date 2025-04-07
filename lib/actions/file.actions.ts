@@ -8,6 +8,7 @@ import { constructFileUrl, getFileType, parseStringify } from "../utils";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "./user.actions";
 import { redirect } from "next/navigation";
+import path from "path";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
@@ -73,5 +74,25 @@ export const getFiles = async (props?: GetFilesProps) => {
     return parseStringify(files);
   } catch (err) {
     handleError(err, "Failed to get files");
+  }
+};
+
+export const renameFile = async ({ fileId, name, extension, path }: RenameFileProps) => {
+  const { databases } = await createAdminClient();
+
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      redirect("/auth");
+    }
+
+    const newName = `${name}.${extension}`;
+    const updatedFile = await databases.updateDocument(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, fileId, { name: newName });
+
+    revalidatePath(path);
+    return parseStringify(updatedFile);
+  } catch (error) {
+    handleError(error, "Failed to rename file");
   }
 };
