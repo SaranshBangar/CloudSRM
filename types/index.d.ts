@@ -31,7 +31,7 @@ declare interface RenameFileProps {
 }
 declare interface UpdateFileUsersProps {
   fileId: string;
-  emails: string[];
+  netid: string[];
   path: string;
 }
 declare interface DeleteFileProps {
