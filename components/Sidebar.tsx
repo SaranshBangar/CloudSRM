@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 
 const Sidebar = ({ netid }: { netid: string }) => {
   const pathname = usePathname();
-  const [avatarUrl, setAvatarUrl] = useState("/assets/images/default-avatar.png");
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   useEffect(() => {
     const fetchAvatarUrl = async () => {

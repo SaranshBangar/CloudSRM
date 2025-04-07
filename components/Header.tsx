@@ -1,16 +1,16 @@
 import React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import Search from "./Search";
 import FileUploader from "./FileUploader";
+import Search from "./Search";
 import { signOutUser } from "@/lib/actions/user.actions";
 
-const Header = ({ accountId, userId }: { accountId: string; userId: string }) => {
+const Header = ({ $id, accountId }: { $id: string; accountId: string }) => {
   return (
     <header className="header">
       <Search />
       <div className="header-wrapper">
-        <FileUploader ownerId={userId} accountId={accountId} />
+        <FileUploader ownerId={$id} accountId={accountId} />
         <form
           action={async () => {
             "use server";
@@ -18,7 +18,7 @@ const Header = ({ accountId, userId }: { accountId: string; userId: string }) =>
           }}
         >
           <Button type="submit" className="sign-out-button">
-            <Image src="/assets/icons/logout.svg" alt="L=logout" width={24} height={24} className="w-6" />
+            <Image src="/assets/icons/logout.svg" alt="logout" width={24} height={24} className="w-6" />
           </Button>
         </form>
       </div>

@@ -51,6 +51,12 @@ const OTPModal = ({ accountId, email }: { accountId: string; email: string }) =>
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && password.length === 6 && !isLoading) {
+      handleSubmit(e as any);
+    }
+  };
+
   const handleResendOtp = async () => {
     setIsLoading(true);
     try {
@@ -73,7 +79,7 @@ const OTPModal = ({ accountId, email }: { accountId: string; email: string }) =>
 
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
-      <AlertDialogContent className="shad-alert-dialog">
+      <AlertDialogContent className="shad-alert-dialog" onKeyDown={handleKeyDown}>
         <AlertDialogHeader className="relative flex justify-center">
           <AlertDialogTitle className="h2 text-center">Enter your OTP</AlertDialogTitle>
           <Image

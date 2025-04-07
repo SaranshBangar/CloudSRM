@@ -17,7 +17,7 @@ const MobileNavigation = ({ ownerId, accountId, netid }: { ownerId: string; acco
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const [avatarUrl, setAvatarUrl] = useState("/assets/images/default-avatar.png");
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   useEffect(() => {
     const fetchAvatarUrl = async () => {

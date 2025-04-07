@@ -41,13 +41,31 @@ const FileUploader = ({ ownerId, accountId, className }: FileUploaderProps) => {
           });
         }
 
-        return uploadFile({ file, ownerId, accountId, path }).then((uploadedFile) => {
-          if (uploadedFile) {
+        try {
+          const result = await uploadFile({ file, ownerId, accountId, path });
+
+          if (result) {
             setFiles((prevFiles) => prevFiles.filter((f) => f.name !== file.name));
           }
-        });
+          return result;
+        } catch (error) {
+          console.error(`Error uploading file ${file.name}:`, error);
+          toast({
+            description: (
+              <p className="body-2 text-white">
+                <span className="font-semibold">{file.name}</span> failed to upload.
+              </p>
+            ),
+            className: "error-toast",
+          });
+        }
       });
-      await Promise.all(uploadPromises);
+
+      try {
+        await Promise.all(uploadPromises);
+      } catch (error) {
+        console.error("Error in upload batch:", error);
+      }
     },
     [ownerId, accountId, path, toast]
   );
