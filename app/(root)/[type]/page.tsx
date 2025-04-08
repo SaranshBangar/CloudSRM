@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import Sort from "@/components/Sort";
 import { getFiles } from "@/lib/actions/file.actions";
-import { getFileTypesParams } from "@/lib/utils";
+import { convertFileSize, getFileTypesParams } from "@/lib/utils";
 import { Models } from "node-appwrite";
 import React from "react";
 
@@ -19,7 +19,7 @@ const page = async ({ searchParams, params }: SearchParamProps) => {
         <h1 className="h1 capitalize">{type}</h1>
         <div className="total-size-section">
           <p className="body-1">
-            Total : <span className="h5">totalSize</span>
+            Total : <span className="h5">{convertFileSize(200)}</span>
           </p>
           <div className="sort-container">
             <p className="body-1 hidden sm:block text-light-200">Sort by : </p>
