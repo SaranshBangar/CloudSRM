@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CloudSRM
+
+CloudSRM is a cloud storage application built specifically for SRM Institute of Science and Technology (SRMIST) students and faculty. Similar to Google Drive or Dropbox, CloudSRM offers convenient file storage, sharing, and management features tailored to the SRMIST community's needs.
+
+## Features
+
+- **Secure Authentication**: Login with your SRMIST credentials
+- **File Management**: Upload, download, organize, and share your files
+- **Collaborative Workspace**: Share files with classmates and faculty members
+- **Cross-Platform**: Access your files from any device with an internet connection
+- **Responsive Design**: Optimized for both desktop and mobile experiences
+
+## Technology Stack
+
+CloudSRM is built with modern technologies:
+
+- **Frontend**: Next.js, TypeScript
+- **Backend & Auth**: Appwrite
+- **Styling**: Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (v16 or higher)
+- npm or yarn
+- Appwrite instance
+
+### Installation & Setup
+
+1. Clone the repository
+```bash
+git clone https://github.com/SaranshBangar/CloudSRM.git
+cd CloudSRM
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables
+Create a `.env.local` file in the root directory with the following variables:
+```
+NEXT_PUBLIC_APPWRITE_ENDPOINT=your_appwrite_endpoint
+NEXT_PUBLIC_APPWRITE_PROJECT=your_appwrite_project_id
+NEXT_PUBLIC_APPWRITE_DATABASE=your_appwrite_database_id
+NEXT_PUBLIC_APPWRITE_STORAGE_ID=your_appwrite_storage_id
+NEXT_PUBLIC_APPWRITE_USERS_COLLECTION=your_appwrite_user_collection_id
+NEXT_PUBLIC_APPWRITE_FILES_COLLECTION=your_appwrite_files_collection_id
+NEXT_PUBLIC_APPWRITE_BUCKET=your_appwrite_bucket_id
+NEXT_APPWRITE_SECRET=your_appwrite_secret
+```
+
+4. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Sign Up/Login**: Use your SRMIST credentials
+2. **Upload Files**: Click on the upload button to add files to your storage
+4. **Share**: Share files with other SRMIST users and set appropriate permissions
+5. **Access Anywhere**: Log in from any device to access your files
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Please make sure to update tests as appropriate and adhere to the code style of the project.
 
-## Deploy on Vercel
+## Authors
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Saransh Bangar** - [GitHub](https://github.com/SaranshBangar)
+- **Md Rakiul Islam** - [GitHub](https://github.com/Rakiul-Islam)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+
+## Contact
+
+For questions or feedback, please reach out to:
+- saranshbangad@gmail.com
+
+---
+
+Made with ❤️ for SRMIST
