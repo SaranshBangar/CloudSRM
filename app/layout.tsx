@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="qF71edahFIYLNHvFM63PAKUWBDzbvGg5Dk4j44IM_Eg" />
+      </head>
       <body className={`${noto_sans.variable} font-noto_sans antialiased`}>{children}</body>
     </html>
   );
