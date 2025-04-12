@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="qF71edahFIYLNHvFM63PAKUWBDzbvGg5Dk4j44IM_Eg" />
+        <meta name="google-adsense-account" content="ca-pub-4851546257120071" />
       </head>
       <body className={`${noto_sans.variable} font-noto_sans antialiased`}>{children}</body>
     </html>
