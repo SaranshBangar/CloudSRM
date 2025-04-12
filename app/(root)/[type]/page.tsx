@@ -4,6 +4,26 @@ import { getFiles } from "@/lib/actions/file.actions";
 import { convertFileSize, getFileTypesParams } from "@/lib/utils";
 import { Models } from "node-appwrite";
 import React from "react";
+import { Metadata } from "next";
+
+type Props = {
+  params: { type: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { type } = params;
+  const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
+
+  return {
+    title: `${capitalizedType} Files | CloudSRM`,
+    description: `Access and manage your ${type} files on CloudSRM. Upload, download, share, and organize your ${type} securely.`,
+    keywords: [`${type} files`, "cloud storage", "SRMIST", "file management", `${type} sharing`],
+    openGraph: {
+      title: `${capitalizedType} Files | CloudSRM - SRM's Cloud Storage Platform`,
+      description: `Access and manage your ${type} files on CloudSRM. Upload, download, share, and organize your ${type} securely.`,
+    },
+  };
+}
 
 const page = async ({ searchParams, params }: SearchParamProps) => {
   const type = ((await params)?.type as string) || "";

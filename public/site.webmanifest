@@ -1,0 +1,22 @@
+{
+  "name": "CloudSRM - SRM's Cloud Storage Platform",
+  "short_name": "CloudSRM",
+  "description": "Secure cloud storage service built specifically for SRMIST students and faculty.",
+  "start_url": "https://www.cloudsrm.xyz",
+  "display": "standalone",
+  "background_color": "#4f46e5",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
