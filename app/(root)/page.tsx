@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Models } from "node-appwrite";
-import type { Metadata } from "next";
 
 import { Separator } from "@/components/ui/separator";
 import { getFiles, getTotalSpaceUsed } from "@/lib/actions/file.actions";
@@ -10,18 +9,6 @@ import FormattedDateTime from "@/components/FormattedDateTime";
 import Thumbnail from "@/components/Thumbnail";
 import ActionsDropdown from "@/components/ActionsDropdown";
 import { Chart } from "@/components/Chart";
-
-export const metadata: Metadata = {
-  title: "Dashboard - Manage Your Files",
-  description:
-    "Access and manage your files on CloudSRM. View storage usage, recent uploads, and quickly access your documents, images, videos, and other files.",
-  keywords: ["dashboard", "cloud storage", "file management", "SRMIST", "document management"],
-  openGraph: {
-    title: "CloudSRM Dashboard - Manage Your Files",
-    description:
-      "Access and manage your files on CloudSRM. View storage usage, recent uploads, and quickly access your documents, images, videos, and other files.",
-  },
-};
 
 const Dashboard = async () => {
   const [files, totalSpace] = await Promise.all([getFiles({ types: [], limit: 10 }), getTotalSpaceUsed()]);
