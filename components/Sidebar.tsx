@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { ConfettiButton } from "./ui/confetti-button";
 
 const Sidebar = ({ netid }: { netid: string }) => {
   const pathname = usePathname();
@@ -29,10 +30,18 @@ const Sidebar = ({ netid }: { netid: string }) => {
   return (
     <aside className="sidebar">
       <Link href="/">
-        <div className="text-brand flex items-center gap-2">
-          <Image src="/favicon.ico" alt="logo" width={55} height={55} className="hidden h-auto lg:block" />
-          <h1 className="h1 hidden lg:block">CloudSRM</h1>
-        </div>
+        <ConfettiButton
+          options={{
+            get angle() {
+              return Math.random() * 90 + 270;
+            },
+          }}
+        >
+          <div className="text-brand flex items-center gap-2">
+            <Image src="/favicon.ico" alt="logo" width={55} height={55} className="hidden h-auto lg:block" />
+            <h1 className="h1 hidden lg:block">CloudSRM</h1>
+          </div>
+        </ConfettiButton>
         <Image src="/favicon.ico" alt="logo" width={50} height={50} className="lg:hidden" />
       </Link>
       <nav className="sidebar-nav">
