@@ -30,18 +30,19 @@ const Sidebar = ({ netid }: { netid: string }) => {
   return (
     <aside className="sidebar">
       <Link href="/">
-        <ConfettiButton
-          options={{
-            get angle() {
-              return Math.random() * 90 + 270;
-            },
-          }}
-        >
-          <div className="text-brand flex items-center gap-2">
+        <div className="text-brand flex items-center gap-2">
+          <ConfettiButton
+            options={{
+              get angle() {
+                return Math.random() * 90 + 270;
+              },
+            }}
+            className="shadow-none"
+          >
             <Image src="/favicon.ico" alt="logo" width={55} height={55} className="hidden h-auto lg:block" />
             <h1 className="h1 hidden lg:block">CloudSRM</h1>
-          </div>
-        </ConfettiButton>
+          </ConfettiButton>
+        </div>
         <Image src="/favicon.ico" alt="logo" width={50} height={50} className="lg:hidden" />
       </Link>
       <nav className="sidebar-nav">

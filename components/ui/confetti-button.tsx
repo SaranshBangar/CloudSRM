@@ -22,7 +22,6 @@ export type ConfettiRef = Api | null;
 
 const ConfettiContext = createContext<Api>({} as Api);
 
-// Define component first
 const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
   const { options, globalOptions = { resize: true, useWorker: true }, manualstart = false, children, ...rest } = props;
   const instanceRef = useRef<ConfettiInstance | null>(null);
@@ -85,10 +84,8 @@ const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
   );
 });
 
-// Set display name immediately
 ConfettiComponent.displayName = "Confetti";
 
-// Export as Confetti
 export const Confetti = ConfettiComponent;
 
 interface ConfettiButtonProps extends ButtonProps {
