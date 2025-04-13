@@ -16,14 +16,14 @@ CloudSRM is built with modern technologies:
 
 - **Frontend**: Next.js, TypeScript
 - **Backend & Auth**: Appwrite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS, shadcn/ui
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- npm or yarn
+- Node.js (v18 or higher)
+- npm or yarn or bun
 - Appwrite instance
 
 ### Installation & Setup
@@ -39,6 +39,8 @@ cd CloudSRM
 npm install
 # or
 yarn install
+# or
+bun install
 ```
 
 3. Set up environment variables
@@ -59,6 +61,8 @@ NEXT_APPWRITE_SECRET=your_appwrite_secret
 npm run dev
 # or
 yarn dev
+# or
+bun dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -84,8 +88,8 @@ Please make sure to update tests as appropriate and adhere to the code style of 
 
 ## Authors
 
-- **Saransh Bangar** - [GitHub](https://github.com/SaranshBangar)
-- **Md Rakiul Islam** - [GitHub](https://github.com/Rakiul-Islam)
+- **Saransh Bangar** - [GitHub](https://www.linkedin.com/in/saransh-bangar/)
+- **Md Rakiul Islam** - [GitHub](https://www.linkedin.com/in/rakiul-islam/)
 
 ## License
 
@@ -95,7 +99,8 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 
 For questions or feedback, please reach out to:
 - saranshbangad@gmail.com
+- rakiulmalda96@gmail.com
 
 ---
 
-Made with ❤️ for SRMIST
+Made with ❤️ for [SRMIST](https://www.srmist.edu.in/)
