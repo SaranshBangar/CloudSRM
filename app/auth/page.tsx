@@ -6,14 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import Image from "next/image";
 import { createAccount } from "@/lib/actions/user.actions";
@@ -60,9 +53,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       }
     } catch (error) {
       console.error("Auth error details:", error);
-      setErrorMessage(
-        type === "sign-up" ? "Failed to create account" : "Failed to sign in",
-      );
+      setErrorMessage(type === "sign-up" ? "Failed to create account" : "Failed to sign in");
     } finally {
       setIsLoading(false);
     }
@@ -81,42 +72,21 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 <div className="shad-form-item">
                   <FormLabel className="shad-form-label">Net ID</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Eg - sb5116"
-                      {...field}
-                      className="shad-input"
-                    />
+                    <Input placeholder="Eg - sb5116" {...field} className="shad-input" />
                   </FormControl>
                 </div>
                 <FormMessage className="shad-form-message" />
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            className="form-submit-button"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="form-submit-button" disabled={isLoading}>
             {type === "sign-in" ? "Sign In" : "Sign Up"}
-            {isLoading && (
-              <Image
-                src="/assets/icons/loader.svg"
-                alt="loader"
-                width={24}
-                height={24}
-                className="ml-2 animate-spin"
-              />
-            )}
+            {isLoading && <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className="ml-2 animate-spin" />}
           </Button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
       </Form>
-      {accountId && (
-        <OTPModal
-          email={form.getValues("netid") + "@srmist.edu.in"}
-          accountId={accountId}
-        />
-      )}
+      {accountId && <OTPModal email={form.getValues("netid") + "@srmist.edu.in"} accountId={accountId} />}
     </>
   );
 };
@@ -127,39 +97,19 @@ const AuthPage = () => {
       <section className="bg-brand p-10 hidden w-1/2 items-center justify-center lg:flex xl:w-2/5">
         <div className="flex max-h-[800px] max-w-[430px] flex-col justify-center space-y-12">
           <div className="text-white flex items-center gap-2">
-            <Image
-              src="/favicon.ico"
-              alt="logo"
-              width={82}
-              height={82}
-              className="h-auto"
-            />
+            <Image src="/favicon.ico" alt="logo" width={82} height={82} className="h-auto" />
             <h1 className="h1">CloudSRM</h1>
           </div>
           <div className="space-y-5 text-white">
             <h1 className="h1">Manage your files the best way!</h1>
-            <p className="body-1">
-              This is a place where you can store all your documents
-            </p>
+            <p className="body-1">This is a place where you can store all your documents</p>
           </div>
-          <Image
-            src="/assets/images/files.svg"
-            alt="files"
-            width={342}
-            height={342}
-            className="transition-all hover:rotate-2 hover:scale-105"
-          />
+          <Image src="/assets/images/files.svg" alt="files" width={342} height={342} className="transition-all hover:rotate-2 hover:scale-105" />
         </div>
       </section>
       <section className="flex flex-1 flex-col items-center bg-white p-4 py-10 lg:justify-center lg:p-10 lg:py-0">
         <div className="mb-16 lg:hidden">
-          <Image
-            src="/favicon.ico"
-            alt="logo"
-            width={82}
-            height={82}
-            className="h-auto w-[200px] lg:w-[250px]"
-          />
+          <Image src="/favicon.ico" alt="logo" width={82} height={82} className="h-auto w-[200px] lg:w-[250px]" />
         </div>
         <AuthForm type="sign-in" />
       </section>
