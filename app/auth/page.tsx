@@ -142,7 +142,6 @@ const AuthPage = () => {
               This is a place where you can store all your documents
             </p>
           </div>
-          {/* Add the new image made by Rakiul over here */}
           <Image
             src="/assets/images/files.svg"
             alt="files"
