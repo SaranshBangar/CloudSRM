@@ -15,13 +15,22 @@ const handleError = (error: unknown, message: string) => {
   throw error;
 };
 
-export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileProps) => {
+export const uploadFile = async ({
+  file,
+  ownerId,
+  accountId,
+  path,
+}: UploadFileProps) => {
   const { storage, databases } = await createAdminClient();
 
   try {
     const inputFile = InputFile.fromBuffer(file, file.name);
 
-    const bucketFile = await storage.createFile(appwriteConfig.bucketId, ID.unique(), inputFile);
+    const bucketFile = await storage.createFile(
+      appwriteConfig.bucketId,
+      ID.unique(),
+      inputFile,
+    );
 
     const fileDocument = {
       type: getFileType(bucketFile.name).type,
@@ -36,7 +45,12 @@ export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileP
     };
 
     const newFile = await databases
-      .createDocument(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, ID.unique(), fileDocument)
+      .createDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.filesCollectionId,
+        ID.unique(),
+        fileDocument,
+      )
       .catch(async (error: unknown) => {
         await storage.deleteFile(appwriteConfig.bucketId, bucketFile.$id);
         handleError(error, "Failed to create file document");
@@ -51,8 +65,19 @@ export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileP
   }
 };
 
-const createQueries = (currentUser: Models.Document, types: string[], searchText: string, sort: string, limit?: number) => {
-  const queries = [Query.or([Query.equal("owner", [currentUser.$id]), Query.contains("users", [currentUser.netid])])];
+const createQueries = (
+  currentUser: Models.Document,
+  types: string[],
+  searchText: string,
+  sort: string,
+  limit?: number,
+) => {
+  const queries = [
+    Query.or([
+      Query.equal("owner", [currentUser.$id]),
+      Query.contains("users", [currentUser.netid]),
+    ]),
+  ];
 
   if (types.length > 0) {
     queries.push(Query.equal("type", types));
@@ -69,13 +94,20 @@ const createQueries = (currentUser: Models.Document, types: string[], searchText
   if (sort) {
     const [sortBy, orderBy] = sort.split("-");
 
-    queries.push(orderBy === "asc" ? Query.orderAsc(sortBy) : Query.orderDesc(sortBy));
+    queries.push(
+      orderBy === "asc" ? Query.orderAsc(sortBy) : Query.orderDesc(sortBy),
+    );
   }
 
   return queries;
 };
 
-export const getFiles = async ({ types = [], searchText = "", sort = "$createdAt-desc", limit }: GetFilesProps) => {
+export const getFiles = async ({
+  types = [],
+  searchText = "",
+  sort = "$createdAt-desc",
+  limit,
+}: GetFilesProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -87,7 +119,11 @@ export const getFiles = async ({ types = [], searchText = "", sort = "$createdAt
 
     const queries = createQueries(currentUser, types, searchText, sort, limit);
 
-    const files = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, queries);
+    const files = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      queries,
+    );
 
     return parseStringify(files);
   } catch (err) {
@@ -95,7 +131,12 @@ export const getFiles = async ({ types = [], searchText = "", sort = "$createdAt
   }
 };
 
-export const renameFile = async ({ fileId, name, extension, path }: RenameFileProps) => {
+export const renameFile = async ({
+  fileId,
+  name,
+  extension,
+  path,
+}: RenameFileProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -106,7 +147,12 @@ export const renameFile = async ({ fileId, name, extension, path }: RenameFilePr
     }
 
     const newName = `${name}.${extension}`;
-    const updatedFile = await databases.updateDocument(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, fileId, { name: newName });
+    const updatedFile = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      fileId,
+      { name: newName },
+    );
 
     revalidatePath(path);
     return parseStringify(updatedFile);
@@ -115,7 +161,11 @@ export const renameFile = async ({ fileId, name, extension, path }: RenameFilePr
   }
 };
 
-export const updateFileUsers = async ({ fileId, netid, path }: UpdateFileUsersProps) => {
+export const updateFileUsers = async ({
+  fileId,
+  netid,
+  path,
+}: UpdateFileUsersProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -125,7 +175,12 @@ export const updateFileUsers = async ({ fileId, netid, path }: UpdateFileUsersPr
       redirect("/auth");
     }
 
-    const updatedFile = await databases.updateDocument(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, fileId, { users: netid });
+    const updatedFile = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      fileId,
+      { users: netid },
+    );
 
     revalidatePath(path);
     return parseStringify(updatedFile);
@@ -134,7 +189,11 @@ export const updateFileUsers = async ({ fileId, netid, path }: UpdateFileUsersPr
   }
 };
 
-export const deleteFile = async ({ fileId, bucketFileId, path }: DeleteFileProps) => {
+export const deleteFile = async ({
+  fileId,
+  bucketFileId,
+  path,
+}: DeleteFileProps) => {
   const { databases, storage } = await createAdminClient();
 
   try {
@@ -144,14 +203,21 @@ export const deleteFile = async ({ fileId, bucketFileId, path }: DeleteFileProps
       redirect("/auth");
     }
 
-    const deletedFile = await databases.deleteDocument(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, fileId);
+    const deletedFile = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      fileId,
+    );
 
     if (deletedFile) {
       await storage.deleteFile(appwriteConfig.bucketId, bucketFileId);
     }
 
     revalidatePath(path);
-    return parseStringify({ status: "success", message: "File deleted successfully" });
+    return parseStringify({
+      status: "success",
+      message: "File deleted successfully",
+    });
   } catch (error) {
     handleError(error, "Failed to rename file");
   }
@@ -163,9 +229,11 @@ export async function getTotalSpaceUsed() {
     const currentUser = await getCurrentUser();
     if (!currentUser) throw new Error("User is not authenticated.");
 
-    const files = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.filesCollectionId, [
-      Query.equal("owner", [currentUser.$id]),
-    ]);
+    const files = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      [Query.equal("owner", [currentUser.$id])],
+    );
 
     const totalSpace = {
       image: { size: 0, latestDate: "" },
@@ -182,7 +250,10 @@ export async function getTotalSpaceUsed() {
       totalSpace[fileType].size += file.size;
       totalSpace.used += file.size;
 
-      if (!totalSpace[fileType].latestDate || new Date(file.$updatedAt) > new Date(totalSpace[fileType].latestDate)) {
+      if (
+        !totalSpace[fileType].latestDate ||
+        new Date(file.$updatedAt) > new Date(totalSpace[fileType].latestDate)
+      ) {
         totalSpace[fileType].latestDate = file.$updatedAt;
       }
     });

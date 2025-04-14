@@ -29,12 +29,14 @@ CloudSRM is built with modern technologies:
 ### Installation & Setup
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/SaranshBangar/CloudSRM.git
 cd CloudSRM
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 # or
@@ -44,7 +46,8 @@ bun install
 ```
 
 3. Set up environment variables
-Create a `.env.local` file in the root directory with the following variables:
+   Create a `.env.local` file in the root directory with the following variables:
+
 ```
 NEXT_PUBLIC_APPWRITE_ENDPOINT=your_appwrite_endpoint
 NEXT_PUBLIC_APPWRITE_PROJECT=your_appwrite_project_id
@@ -57,6 +60,7 @@ NEXT_APPWRITE_SECRET=your_appwrite_secret
 ```
 
 4. Run the development server
+
 ```bash
 npm run dev
 # or
@@ -71,8 +75,8 @@ bun dev
 
 1. **Sign Up/Login**: Use your SRMIST credentials
 2. **Upload Files**: Click on the upload button to add files to your storage
-4. **Share**: Share files with other SRMIST users and set appropriate permissions
-5. **Access Anywhere**: Log in from any device to access your files
+3. **Share**: Share files with other SRMIST users and set appropriate permissions
+4. **Access Anywhere**: Log in from any device to access your files
 
 ## Contributing
 
@@ -98,6 +102,7 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 ## Contact
 
 For questions or feedback, please reach out to:
+
 - saranshbangad@gmail.com
 - rakiulmalda96@gmail.com
 

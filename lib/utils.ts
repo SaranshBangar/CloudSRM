@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const parseStringify = (value: unknown) => JSON.parse(JSON.stringify(value));
+export const parseStringify = (value: unknown) =>
+  JSON.parse(JSON.stringify(value));
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
@@ -72,7 +73,8 @@ export const getFileType = (fileName: string) => {
   const videoExtensions = ["mp4", "avi", "mov", "mkv", "webm"];
   const audioExtensions = ["mp3", "wav", "ogg", "flac"];
 
-  if (documentExtensions.includes(extension)) return { type: "document", extension };
+  if (documentExtensions.includes(extension))
+    return { type: "document", extension };
   if (imageExtensions.includes(extension)) return { type: "image", extension };
   if (videoExtensions.includes(extension)) return { type: "video", extension };
   if (audioExtensions.includes(extension)) return { type: "audio", extension };
@@ -93,13 +95,29 @@ export const formatDateTime = (isoString: string | null | undefined) => {
 
   const time = `${hours}:${minutes.toString().padStart(2, "0")}${period}`;
   const day = date.getDate();
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const month = monthNames[date.getMonth()];
 
   return `${time}, ${day} ${month}`;
 };
 
-export const getFileIcon = (extension: string | undefined, type: FileType | string) => {
+export const getFileIcon = (
+  extension: string | undefined,
+  type: FileType | string,
+) => {
   switch (extension) {
     case "pdf":
       return "/assets/icons/file-pdf.svg";
@@ -184,7 +202,10 @@ export const getUsageSummary = (totalSpace: any) => {
     {
       title: "Media",
       size: totalSpace.video.size + totalSpace.audio.size,
-      latestDate: totalSpace.video.latestDate > totalSpace.audio.latestDate ? totalSpace.video.latestDate : totalSpace.audio.latestDate,
+      latestDate:
+        totalSpace.video.latestDate > totalSpace.audio.latestDate
+          ? totalSpace.video.latestDate
+          : totalSpace.audio.latestDate,
       icon: "/assets/icons/file-video-light.svg",
       url: "/media",
     },
