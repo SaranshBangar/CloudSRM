@@ -16,11 +16,8 @@ const page = async ({ searchParams, params }: SearchParamProps) => {
   return (
     <div className="page-container">
       <section className="w-full">
-        <h1 className="h1 capitalize">{type}</h1>
         <div className="total-size-section">
-          <p className="body-1">
-            Total : <span className="h5">{convertFileSize(200)}</span>
-          </p>
+          <h1 className="h1 capitalize">{type}</h1>
           <div className="sort-container">
             <p className="body-1 hidden sm:block text-light-200">Sort by : </p>
             <Sort />
