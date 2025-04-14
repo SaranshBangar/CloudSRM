@@ -1,7 +1,13 @@
 "use client";
 
 import React from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { usePathname, useRouter } from "next/navigation";
 import { sortTypes } from "@/constants";
 
@@ -20,7 +26,11 @@ const Sort = () => {
       </SelectTrigger>
       <SelectContent className="sort-select-content">
         {sortTypes.map((sort) => (
-          <SelectItem key={sort.label} value={sort.value} className="shad-select-item">
+          <SelectItem
+            key={sort.label}
+            value={sort.value}
+            className="shad-select-item"
+          >
             {sort.label}
           </SelectItem>
         ))}

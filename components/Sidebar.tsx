@@ -39,18 +39,44 @@ const Sidebar = ({ netid }: { netid: string }) => {
             }}
             className="shadow-none"
           >
-            <Image src="/favicon.ico" alt="logo" width={55} height={55} className="hidden h-auto lg:block" />
+            <Image
+              src="/favicon.ico"
+              alt="logo"
+              width={55}
+              height={55}
+              className="hidden h-auto lg:block"
+            />
             <h1 className="h1 hidden lg:block">CloudSRM</h1>
           </ConfettiButton>
         </div>
-        <Image src="/favicon.ico" alt="logo" width={50} height={50} className="lg:hidden" />
+        <Image
+          src="/favicon.ico"
+          alt="logo"
+          width={50}
+          height={50}
+          className="lg:hidden"
+        />
       </Link>
       <nav className="sidebar-nav">
         <ul className="flex flex-1 flex-col gap-6">
           {sidebarNavItems.map(({ url, name, icon }) => (
             <Link href={url} key={name} className="lg:w-full">
-              <li className={cn("sidebar-nav-item", pathname === url && "shad-active")}>
-                <Image src={icon} alt={name} width={24} height={24} className={cn("nav-icon", pathname === url && "nav-icon-active")} />
+              <li
+                className={cn(
+                  "sidebar-nav-item",
+                  pathname === url && "shad-active",
+                )}
+              >
+                <Image
+                  src={icon}
+                  alt={name}
+                  width={24}
+                  height={24}
+                  className={cn(
+                    "nav-icon",
+                    pathname === url && "nav-icon-active",
+                  )}
+                />
                 <p className="hidden lg:block">{name}</p>
               </li>
             </Link>
@@ -58,7 +84,13 @@ const Sidebar = ({ netid }: { netid: string }) => {
         </ul>
       </nav>
       <div className="sidebar-user-info">
-        <Image src={avatarUrl} alt="avatar" width={44} height={44} className="sidebar-user-avatar" />
+        <Image
+          src={avatarUrl}
+          alt="avatar"
+          width={44}
+          height={44}
+          className="sidebar-user-avatar"
+        />
         <div className="hidden lg:block">
           <p className="subtitle-2">{netid}</p>
         </div>
