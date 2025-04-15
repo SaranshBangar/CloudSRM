@@ -88,7 +88,7 @@ export const getFileType = (fileName: string) => {
     "wmv",
     "xls",
     "xlsx",
-    "xd"
+    "xd",
   ];
   const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "svg", "webp"];
   const videoExtensions = ["mp4", "avi", "mov", "mkv", "webm"];
