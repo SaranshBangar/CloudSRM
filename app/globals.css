@@ -142,10 +142,10 @@
     @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-dropdown-item {
-    @apply cursor-pointer !important;
+    @apply cursor-pointer bg-white !important;
   }
   .shad-dialog {
-    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8   !important;
+    @apply rounded-[26px] w-[90%] max-w-[400px] px-6 py-8 bg-white  !important;
   }
   .shad-chart-title {
     @apply text-white !important;
